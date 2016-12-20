@@ -49,24 +49,23 @@ RUN mkdir -p $APPDIR && cd /tmp && \
 
 ADD config /
 
-RUN /bin/rtd-install.sh
+RUN ./bin/rtd-install.sh
 
 # Install gunicorn web server
-# RUN pip install gunicorn
-RUN pip install setproctitle
+RUN pip install gunicorn setproctitle
 
 # Set up the gunicorn startup script
-COPY /bin/gunicorn_start.sh ./gunicorn_start.sh
+COPY ./bin/gunicorn_start.sh ./gunicorn_start.sh
 RUN chmod u+x ./gunicorn_start.sh
 
 # Install supervisord
 RUN pip install supervisor
-ADD /bin/supervisord.conf /etc/supervisord.conf
+ADD ./bin/supervisord.conf /etc/supervisord.conf
 
 ENV RTD_PRODUCTION_DOMAIN 'localhost:8000'
 
 # Set up nginx
-COPY /bin/readthedocs.nginx.conf /etc/nginx/sites-available/readthedocs
+COPY ./bin/readthedocs.nginx.conf /etc/nginx/sites-available/readthedocs
 RUN ln -s /etc/nginx/sites-available/readthedocs /etc/nginx/sites-enabled/readthedocs
 
 # Docker config
