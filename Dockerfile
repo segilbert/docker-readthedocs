@@ -27,7 +27,8 @@ RUN apt-get -qq update && \
         python libxml2-dev libxslt1-dev expat libevent-dev wget python-dev \
         texlive texlive-latex-extra language-pack-en unzip git python-pip \
         zlib1g-dev lib32z1-dev libpq-dev gettext curl apt-utils && \
-    apt-get clean
+    apt-get clean && \
+    apt-get pip install --upgrade 
 
 # Install test dependencies
 RUN pip install -q \
@@ -55,17 +56,17 @@ RUN ./bin/rtd-install.sh
 RUN pip install gunicorn setproctitle
 
 # Set up the gunicorn startup script
-COPY ./bin/gunicorn_start.sh ./gunicorn_start.sh
+COPY ./config/bin/gunicorn_start.sh ./gunicorn_start.sh
 RUN chmod u+x ./gunicorn_start.sh
 
 # Install supervisord
 RUN pip install supervisor
-ADD ./bin/supervisord.conf /etc/supervisord.conf
+ADD ./config/bin/supervisord.conf /etc/supervisord.conf
 
 ENV RTD_PRODUCTION_DOMAIN 'localhost:8000'
 
 # Set up nginx
-COPY ./bin/readthedocs.nginx.conf /etc/nginx/sites-available/readthedocs
+COPY ./config/bin/readthedocs.nginx.conf /etc/nginx/sites-available/readthedocs
 RUN ln -s /etc/nginx/sites-available/readthedocs /etc/nginx/sites-enabled/readthedocs
 
 # Docker config
