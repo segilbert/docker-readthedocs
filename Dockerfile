@@ -27,8 +27,7 @@ RUN apt-get -qq update && \
         python libxml2-dev libxslt1-dev expat libevent-dev wget python-dev \
         texlive texlive-latex-extra language-pack-en unzip git python-pip \
         zlib1g-dev lib32z1-dev libpq-dev gettext curl apt-utils && \
-    apt-get clean && \
-    apt-get pip install --upgrade 
+    apt-get clean 
 
 # Install test dependencies
 RUN pip install -q \
