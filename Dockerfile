@@ -51,7 +51,7 @@ RUN apt-get -qq update && \
     apt-get clean 
 
 # Install apt-show-versions
-RUN apt-get install apt-show-versions -q
+RUN apt-get install apt-show-versions -y -qq
 
 # Display versions
 echo apt-show-versions python
