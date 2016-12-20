@@ -51,11 +51,11 @@ RUN apt-get -qq update && \
     apt-get clean 
 
 # Install apt-show-versions
-RUN apt-get install apt-show-versions -y -qq -f
+#RUN apt-get install apt-show-versions -y -qq -f
 
 # Display versions
-echo apt-show-versions python
-echo apt-show-versions nginx
+#echo apt-show-versions python
+#echo apt-show-versions nginx
 
 # Install test dependencies
 RUN pip install -q \
