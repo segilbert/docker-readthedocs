@@ -68,7 +68,7 @@ RUN pip install -q \
     pylint
 
 # Display versions
-echo pip show requests 
+CMD echo pip show requests 
 
 # Setting up virtualenv
 RUN virtualenv /venv
