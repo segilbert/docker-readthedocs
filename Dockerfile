@@ -19,7 +19,6 @@ ENV PATH /venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 # Set locale to UTF-8
 RUN locale-gen en_US.UTF-8 && \
     update-locale LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
-RUN locale-gen fr_FR.UTF-8
 
 # Update python
 RUN apt-get -qq update && \
@@ -27,7 +26,7 @@ RUN apt-get -qq update && \
     apt-get install -y -qq \
         python libxml2-dev libxslt1-dev expat libevent-dev wget python-dev \
         texlive texlive-latex-extra language-pack-en unzip git python-pip \
-        zlib1g-dev lib32z1-dev libpq-dev gettext curl && \
+        zlib1g-dev lib32z1-dev libpq-dev gettext curl apt-utils && \
     apt-get clean
 
 # Install test dependencies
