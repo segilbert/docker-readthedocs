@@ -24,19 +24,49 @@ RUN locale-gen en_US.UTF-8 && \
 RUN apt-get -qq update && \
     apt-get -y -qq upgrade && \
     apt-get install -y -qq \
-        python libxml2-dev libxslt1-dev expat libevent-dev wget python-dev \
-        texlive texlive-latex-extra language-pack-en unzip git python-pip \
-        zlib1g-dev lib32z1-dev libpq-dev gettext curl apt-utils && \
+        apt-show-versions \
+        python \
+        libxml2-dev \
+        libxslt1-dev \
+        expat \
+        libevent-dev \
+        wget \
+        python-dev \
+        texlive \
+        texlive-latex-extra \
+        language-pack-en \
+        unzip \
+        git \
+        python-pip \
+        zlib1g-dev \
+        lib32z1-dev \
+        libpq-dev \
+        gettext \
+        curl \
+        apt-utils \
+        doxygen \
+        dvipng \
+        graphviz \
+        nginx \
+        nano && \
     apt-get clean 
+
+# Display versions
+echo apt-show-versions python
+echo apt-show-versions nginx
 
 # Install test dependencies
 RUN pip install -q \
     virtualenv \
+    requests \
     pep8 \
     mock \
     nose \
     coverage \
     pylint
+
+# Display versions
+echo pip show requests 
 
 # Setting up virtualenv
 RUN virtualenv /venv
