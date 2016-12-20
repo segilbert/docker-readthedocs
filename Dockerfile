@@ -20,11 +20,10 @@ ENV PATH /venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 RUN locale-gen en_US.UTF-8 && \
     update-locale LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
 
-# Update python
+# Install and Upgrade Dependencies, Tools, and Apps
 RUN apt-get -qq update && \
     apt-get -y -qq upgrade && \
     apt-get install -y -qq \
-        apt-show-versions \
         python \
         libxml2-dev \
         libxslt1-dev \
@@ -50,6 +49,9 @@ RUN apt-get -qq update && \
         nginx \
         nano && \
     apt-get clean 
+
+# Install apt-show-versions
+RUN apt install apt-show-versions
 
 # Display versions
 echo apt-show-versions python
