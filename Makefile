@@ -1,4 +1,4 @@
-NAME =	moul/readthedocs
+NAME =	frozenbytes/readthedocs
 
 build:
 	docker build -t $(NAME) .
